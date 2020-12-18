@@ -8,7 +8,7 @@ Feel free to use and modify the script or suggest any issues or changes.
 ## Usage
 
 ```
-usage: gitdmp [-h] [-v] [-c]
+usage: gitdmp [-h] [-v]
 
 option:
 -v : dumps all the file changes of files in the git repo.
