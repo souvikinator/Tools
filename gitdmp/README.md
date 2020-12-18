@@ -11,7 +11,6 @@ Feel free to use and modify the script or suggest any issues or changes.
 usage: gitdmp [-h] [-v] [-c]
 
 option:
--c : dumps all the commit messages (still working on it)
 -v : dumps all the file changes of files in the git repo.
 -h : shows help menu
 ```
