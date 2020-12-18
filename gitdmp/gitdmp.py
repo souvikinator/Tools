@@ -9,10 +9,9 @@ gitdmp 1.0.0
 
 madeby: souvik (@DarthCucumber)
 
-usage: gitdmp [-h] [-v] [-c] 
+usage: gitdmp [-h] [-v] 
 
 option:
-    -c : dumps all the commit messages
     -v : dumps all the file changes of files in the git repo.
     -h : shows help menu
 """
@@ -59,9 +58,3 @@ if "-v" in args:
             print(bytes(fl_data).decode('latin-1'))
     
     print("\n=========[DUMP END]========\n")
-
-#commits dump
-if "-c" in args:
-    print("under construction")
-    sys.exit(0)
-
