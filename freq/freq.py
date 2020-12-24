@@ -34,6 +34,8 @@ banner="""
 ░█▀▀░█▀▀▄░█▀▀░█▀▀█
 ░█▀░░█▄▄▀░█▀▀░█▄▄█
 ░▀░░░▀░▀▀░▀▀▀░░░░█ 
+
+ctrl+D to exit
 """
 
 parser=argparse.ArgumentParser()
@@ -46,8 +48,7 @@ arg=parser.parse_args()
 
 freq_list=dict()
 
-
-print("\nanalysing...\n")
+console.print(banner,style="bold #44aec2")
 
 for line in sys.stdin:
     freq_list=dict()
