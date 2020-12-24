@@ -15,3 +15,5 @@ option:
 -h : shows help menu
 ```
 
+this proves to be useful when used with `grep`
+
