@@ -27,21 +27,21 @@ options:
 ## Example
 
 ### Passing single URL
-	```bash
-	echo "http://vsurl.ta/aha8q12" | unwee -l
-	```
-	Result:
-	```bash
-	http://vsurl.ta/rndpth => http://veryshoturl.ta/random/path
-	```
+```bash
+echo "http://vsurl.ta/aha8q12" | unwee -l
+```
+Result:
+```bash
+http://vsurl.ta/rndpth => http://veryshoturl.ta/random/path
+```
 
 ### Passing multiple URLs
-	let us have a text file `test_urls.txt` with list of short urls in it. Lets 					
-	`unwee` them ; )
-	```bash
-	cat test_url.txt | unwee -l
-	```
-	and you know what the result will be.
+let us have a text file `test_urls.txt` with list of short urls in it. Lets 					
+`unwee` them ; )
+```bash
+cat test_url.txt | unwee -l
+```
+and you know what the result will be.
 
 in addition user can pass options with `unwee` as per their needs.
 
