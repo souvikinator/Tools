@@ -22,18 +22,24 @@ def showTable(freq_list,total):
     else:
         console.print("> nothing to count",style="bold red")
 
+#dict sorter
+def sort(obj):
+    ordered_d = sorted(obj.items(), key=lambda z: z[1], reverse=True)
+    return dict(ordered_d)
+
 #function to preprocess input
 # strips carriage return from the string(just a workaround)
-def preprocess(line):
+def preprocess(line,n):
     tmp=line.strip("\n")
     tmp=tmp.strip("\r\n")
     tmp=tmp.strip("\r")
-    return tmp
+    d_list=[tmp[i:i+n] for i in range(0,len(tmp),n)] #splits string in array of n steps
+    return d_list
 
 banner="""
 ░█▀▀░█▀▀▄░█▀▀░█▀▀█
 ░█▀░░█▄▄▀░█▀▀░█▄▄█
-░▀░░░▀░▀▀░▀▀▀░░░░█ 
+░▀░░░▀░▀▀░▀▀▀░░░░█ V-1.0 
 
 ctrl+D to exit
 """
@@ -50,19 +56,17 @@ freq_list=dict()
 
 console.print(banner,style="bold #44aec2")
 
+nsteps=arg.ngram
+
 for line in sys.stdin:
     freq_list=dict()
     if len(line)>0:
-        line=preprocess(line)
+        chunk=preprocess(line,nsteps)
         if not arg.alphabets and not arg.digit and not arg.symbols:
             #include all chars
-            for c in line:
-                if " " in c:
-                    if "space" in freq_list:
-                        freq_list["space"]+=1
-                    else:
-                        freq_list["space"]=1
-                elif c in freq_list:
+            for c in chunk:
+                #TODO:fix spaces
+                if c in freq_list:
                     freq_list[c]+=1
                 else:
                     freq_list[c]=1
@@ -70,7 +74,7 @@ for line in sys.stdin:
 
         if arg.alphabets:
             #add only aplhabets in the inp_data
-            for c in line:
+            for c in chunk:
                 #is alphabet
                 if c.isalpha():
                     if c in freq_list:
@@ -82,7 +86,7 @@ for line in sys.stdin:
             
         if arg.digit:
             #add only digit in the inp_data
-            for c in line:
+            for c in chunk:
                 #if digit
                 if c.isdigit():
                     if c in freq_list:
@@ -97,12 +101,8 @@ for line in sys.stdin:
             #use regexp
             for c in line:
                 if not c.isalpha() and not c.isdigit():
-                    if c==" ":
-                        if "space" in freq_list:
-                            freq_list["space"]+=1
-                        else:
-                            freq_list["space"]=1
-                    elif c in freq_list:
+                    #TODO: alias for space
+                    if c in freq_list:
                         freq_list[c]+=1
                     else:
                         freq_list[c]=1
@@ -113,5 +113,7 @@ for line in sys.stdin:
             #analyse the input
             print("-k used")
 
-    showTable(freq_list,len(line))
+    showTable(sort(freq_list),len(line))
+    console.print("[cyan]∑ = [/cyan]",len(freq_list))
+    console.print("[cyan]Total no of chars in input = [/cyan]",len(line))
 
